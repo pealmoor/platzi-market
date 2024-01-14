@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -25,6 +26,12 @@ public class Compra {
     private String medioPago;
     private String comentario;
     private String estado;
+    @ManyToOne
+    @JoinColumn(name = "id_cliente", insertable = false,updatable = false)
+    private Cliente cliente;
+
+    @OneToMany(mappedBy = "compra")
+    private List<ComprasProducto> productos;
 
 
 }
